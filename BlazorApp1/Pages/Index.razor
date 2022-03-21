@@ -10,10 +10,15 @@ Welcome to your new app.
 
 <InputNumber
     @bind-Value=@numberValue
+    @oninput=@OnInput />        // Remove this line to get the component compiled
+
+<InputText
+    @bind-Value=@stringValue
     @oninput=@OnInput />
 
 @code {
-    public string numberValue;
+    public int numberValue = 1;
+    public string stringValue = "abc";
     public void OnInput(ChangeEventArgs e)
     {
         var originalValue = e.Value;
