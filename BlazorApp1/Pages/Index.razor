@@ -1,0 +1,31 @@
+﻿@page "/"
+@using System.Globalization
+@using Microsoft.Extensions.Localization
+@using ClassLibrary1
+@inject IStringLocalizer<Translation> Translate
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<p></p>
+<h2>Translation Examples</h2>
+@foreach (var language in languages)
+{
+    // Change the culture
+    SetCulture(language);
+    <p>Example text translated to @language: @Translate["Example"]</p>
+}
+
+@code {
+    private string[] languages = {"en", "de", "fr", "tr"};
+
+    private void SetCulture(string language)
+    {
+        var culture = new CultureInfo(language);
+        CultureInfo.DefaultThreadCurrentCulture   = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+    }
+}
